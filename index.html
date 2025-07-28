@@ -301,7 +301,9 @@
       Setelah itu baru klik tombolnya!
     </div>
     <button class="btn" onclick="tiupLilin()">Tiup Lilin 🎂</button>
+    
   </div>
+
 
   <!-- Musik -->
   <audio id="bgMusic">
@@ -395,6 +397,18 @@ function tiupLilin() {
     <div class="yey-text">🎉 YEAYY!! SELAMAT ULANG TAHUN NURHALIZA 🎂</div>
     <div class="yey-text">Semoga selalu bahagia, sehat, dan sukses terus yaa 💖</div>
   `;
+    // Tambah tombol bonus setelah tiup lilin
+  const bonusBtn = document.createElement("button");
+  bonusBtn.textContent = "🎁 Bonus Video";
+  bonusBtn.className = "btn";
+  bonusBtn.onclick = function () {
+    document.getElementById("bonusModal").style.display = "flex";
+    document.getElementById("bonusVideo").play();
+  };
+
+  caption.appendChild(document.createElement("br"));
+  caption.appendChild(bonusBtn);
+
 
   // Tutup overlay setelah 8 detik
   setTimeout(() => {
@@ -452,8 +466,38 @@ function generateCalendar() {
 
 generateCalendar();
 
+function closeBonus() {
+  const modal = document.getElementById("bonusModal");
+  const video = document.getElementById("bonusVideo");
+  video.pause();
+  video.currentTime = 0;
+  modal.style.display = "none";
+}
+
+
 </script>
 <div id="celebrationOverlay" style="display: none;"></div>
+
+<!-- Modal Video -->
+<div id="bonusModal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 99999; justify-content: center; align-items: center; flex-direction: column;">
+  <video id="bonusVideo" width="80%" controls style="max-width: 800px; border-radius: 12px; box-shadow: 0 0 20px #fff;">
+    <source src="za.mp4" type="video/mp4">
+    Video tidak bisa diputar di browser kamu.
+  </video>
+  <button onclick="closeBonus()" style="
+  margin-top: 20px;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+">Tutup Video</button>
+>
 
 </body>
 </html>
