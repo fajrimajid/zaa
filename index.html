@@ -394,10 +394,19 @@ function tiupLilin() {
   const bonusBtn = document.createElement("button");
   bonusBtn.textContent = "🎁 Bonus Video";
   bonusBtn.className = "btn";
-  bonusBtn.onclick = function () {
-    document.getElementById("bonusModal").style.display = "flex";
-    document.getElementById("bonusVideo").play();
-  };
+bonusBtn.onclick = function () {
+  document.getElementById("bonusModal").style.display = "flex";
+  const video = document.getElementById("bonusVideo");
+  const music = document.getElementById("bgMusic");
+
+  video.play();
+
+  // Jika musik sedang berjalan, pause
+  if (!music.paused) {
+    music.pause();
+    musicIcon.textContent = "▶️ Putar Musik";
+  }
+};
 
   caption.appendChild(document.createElement("br"));
   caption.appendChild(bonusBtn);
@@ -458,6 +467,7 @@ function closeBonus() {
   const modal = document.getElementById("bonusModal");
   const video = document.getElementById("bonusVideo");
   const overlay = document.getElementById("celebrationOverlay");
+  const music = document.getElementById("bgMusic");
 
   video.pause();
   video.currentTime = 0;
@@ -470,13 +480,17 @@ function closeBonus() {
     <div class="yey-text">🎉 YEAYY!! SELAMAT ULANG TAHUN NURHALIZA 🎂</div>
   `;
 
+  // Nyalakan musik lagi jika sebelumnya dinyalakan
+  if (music.paused) {
+    music.play();
+    musicIcon.textContent = "⏸️ Pause Musik";
+  }
+
   // Tutup overlay setelah 6 detik
   setTimeout(() => {
     overlay.style.display = "none";
   }, 6000);
 }
-
-
 
 </script>
 <div id="celebrationOverlay" style="display: none;"></div>
