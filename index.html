@@ -389,14 +389,7 @@ function tiupLilin() {
   alert("🎁 Kamu sudah make a wish yaa! Sekarang lilinnya sudah ditiup 🎉 &");
   caption.innerHTML = "Lilin sudah ditiup! 🎉 Semoga semua harapanmu segera dikabulkan Allah. 💫";
 
-  // Tampilkan overlay ucapan
-  const overlay = document.getElementById("celebrationOverlay");
-  overlay.className = "overlay-dark";
-  overlay.style.display = "flex";
-  overlay.innerHTML = `
-    <div class="yey-text">🎉 YEAYY!! SELAMAT ULANG TAHUN NURHALIZA 🎂</div>
-    <div class="yey-text">Semoga selalu bahagia, sehat, dan sukses terus yaa 💖</div>
-  `;
+
     // Tambah tombol bonus setelah tiup lilin
   const bonusBtn = document.createElement("button");
   bonusBtn.textContent = "🎁 Bonus Video";
@@ -409,11 +402,6 @@ function tiupLilin() {
   caption.appendChild(document.createElement("br"));
   caption.appendChild(bonusBtn);
 
-
-  // Tutup overlay setelah 8 detik
-  setTimeout(() => {
-    overlay.style.display = "none";
-  }, 8000);
 }
 
 
@@ -469,10 +457,25 @@ generateCalendar();
 function closeBonus() {
   const modal = document.getElementById("bonusModal");
   const video = document.getElementById("bonusVideo");
+  const overlay = document.getElementById("celebrationOverlay");
+
   video.pause();
   video.currentTime = 0;
   modal.style.display = "none";
+
+  // Tampilkan overlay ucapan
+  overlay.className = "overlay-dark";
+  overlay.style.display = "flex";
+  overlay.innerHTML = `
+    <div class="yey-text">🎉 YEAYY!! SELAMAT ULANG TAHUN NURHALIZA 🎂</div>
+  `;
+
+  // Tutup overlay setelah 6 detik
+  setTimeout(() => {
+    overlay.style.display = "none";
+  }, 6000);
 }
+
 
 
 </script>
